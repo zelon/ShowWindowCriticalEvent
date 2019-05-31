@@ -9,6 +9,8 @@ Get-EventLog -LogName "System" -After ((Get-Date) + (New-TimeSpan -Days -7)) `
   | Where-Object {$_.EventID -ne '134' } <# NtpClient - time-service #> `
   | Where-Object {$_.EventID -ne '15301' } <# make new ssl cerificate #> `
   | Where-Object {$_.EventID -ne '15300' } <# delete new ssl cerificate #> `
+  | Where-Object {$_.EventID -ne '27' } <# e1rexpress warning #> `
+  | Where-Object {$_.EventID -ne '7031' } <# clipboard service warning #> `
   | Sort-Object TimeWritten
 Get-WmiObject -namespace root\wmi -class MSStorageDriver_FailurePredictStatus -ErrorAction Silentlycontinue | Select InstanceName, PredictFailure, Reason | Format-Table -Autosize
 Get-Date -Format g
