@@ -14,4 +14,5 @@ Get-EventLog -LogName "System" -After ((Get-Date) + (New-TimeSpan -Days -7)) `
   | Where-Object {$_.EventID -ne '22' } <# Media disconnected on NIC - Hyper-V-VmSwitch warning #> `
   | Sort-Object TimeWritten
 Get-WmiObject -namespace root\wmi -class MSStorageDriver_FailurePredictStatus -ErrorAction Silentlycontinue | Select InstanceName, PredictFailure, Reason | Format-Table -Autosize
-Get-Date -Format g
+$updated_time = Get-Date -Format g
+Write-Host "Updated time: ${updated_time}"
